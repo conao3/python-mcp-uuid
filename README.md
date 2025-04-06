@@ -6,6 +6,11 @@
 pdm install
 ```
 
+## Run
+```bash
+pdm run mcp-uuid
+```
+
 # NixOS tips
 ## pdm fails missing virtualenv
 `pdm` uses `virtualenv` to create virtual env but Python which installed by NixOS don't have it, pdm fails.
