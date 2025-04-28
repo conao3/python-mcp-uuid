@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/mseep-audited.png)](https://mseep.ai/app/conao3-python-mcp-uuid)
+
 # python-mcp-uuid
 
 # Usage
