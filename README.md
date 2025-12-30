@@ -1,47 +1,63 @@
-# python-mcp-uuid
+# mcp-uuid
 
-# Usage
+A Model Context Protocol (MCP) server that provides UUID generation capabilities. This lightweight server exposes a simple tool for generating random UUIDs (v4) that can be used by MCP-compatible clients like Claude Desktop.
 
-## Install
+## Requirements
+
+- Python 3.13 or higher
+- [PDM](https://pdm-project.org/) package manager
+
+## Installation
+
+Install the package and create a symlink to make the command globally available:
 
 ```bash
 pdm install
 ln -s $(pdm run which mcp-uuid) ~/.local/bin/
 ```
 
-If you haven't configure `$PATH` to `~/.local/bin/`, you should add your bashrc.
+Make sure `~/.local/bin` is in your PATH. Add the following to your shell configuration file (e.g., `.bashrc` or `.zshrc`) if needed:
 
 ```bash
-PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
-## Configure MCP client
-Add below config for `claude_desktop_config.json`.
+## Configuration
+
+### Claude Desktop
+
+Add the following to your `claude_desktop_config.json`:
 
 ```json
 {
-    "mcpServers": {
-        "uuid": {
-            "command": "mcp-uuid"
-        }
+  "mcpServers": {
+    "uuid": {
+      "command": "mcp-uuid"
     }
+  }
 }
 ```
 
-# Development
+## Development
 
-## Run (develop)
+Run the server in development mode:
+
 ```bash
 pdm run mcp-uuid
 ```
 
-## NixOS tips
+## NixOS Notes
 
-### pdm fails missing virtualenv
-`pdm` uses `virtualenv` to create virtual env but Python which installed by NixOS don't have it, pdm fails.
+### Virtual Environment Backend
 
-ref: https://github.com/NixOS/nixpkgs/issues/225730
+PDM uses `virtualenv` by default, which may not be available on NixOS-managed Python installations. Configure PDM to use the built-in `venv` module instead:
 
 ```bash
 pdm config venv.backend venv
 ```
+
+See [NixOS/nixpkgs#225730](https://github.com/NixOS/nixpkgs/issues/225730) for more details.
+
+## License
+
+See [LICENSE](LICENSE) for details.
