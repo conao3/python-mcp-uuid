@@ -1,7 +1,7 @@
 import uuid
-import mcp.server.fastmcp
+from mcp.server.mcpserver import MCPServer
 
-app = mcp.server.fastmcp.FastMCP("mcp-uuid")
+app = MCPServer("mcp-uuid")
 
 @app.tool()
 def action_uuid() -> str:
